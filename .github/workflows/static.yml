@@ -26,10 +26,10 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-slim
     steps:
       - name: Checkout Master
-        uses: actions/checkout@v3
+        uses: actions/checkout@v6.0.2
         with:
           ref: master
       - name: Checkout Dev Branch
@@ -41,12 +41,12 @@ jobs:
           git fetch --depth=1 origin 7f4e4e83d8c11f05f77870a6223783d104bdc77e
           git worktree add branch/2019 7f4e4e83d8c11f05f77870a6223783d104bdc77e
       - name: Setup Pages
-        uses: actions/configure-pages@v2
+        uses: actions/configure-pages@v6.0.0
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
+        uses: actions/upload-pages-artifact@v4.0.0
         with:
           # Upload entire repository
           path: '.'
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v1
+        uses: actions/deploy-pages@v5.0.0
